@@ -1,10 +1,10 @@
 import os
 from time import sleep
 
-from selene import browser, have
+# from selene import browser, have
 from selene.support.conditions import be
 from selenium import webdriver
-
+from selene. support. shared import browser
 
 def choice_date():
     browser.element('#dateOfBirthInput').click()
@@ -58,7 +58,7 @@ def test_enter_context():
     options.add_argument('--enable-automation')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--disable-setuid-sandbox')
-    browser.Config.driver_options = options
+    browser.config.driver_options = options
     browser.open('https://demoqa.com/automation-practice-form')
     add_data()
     # Проверка заполнения
