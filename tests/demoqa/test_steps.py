@@ -1,4 +1,4 @@
-mport os
+import os
 from time import sleep
 
 from selene import browser, have
