@@ -2,8 +2,9 @@ import os
 from time import sleep
 
 from selene import browser, have
-from selene.support import webdriver
 from selene.support.conditions import be
+from selenium.webdriver.chrome import webdriver
+
 
 def choice_date():
     browser.element('#dateOfBirthInput').click()
