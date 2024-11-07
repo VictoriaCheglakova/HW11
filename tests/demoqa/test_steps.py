@@ -45,7 +45,9 @@ def check_data():
     browser.element("//table//td[text()='State and City']/../td[2]").should(have.exact_text('Haryana Karnal'))
     browser.element('#closeLargeModal').click()
 
-def test_enter_context(open_browser):
+def test_enter_context():
+    browser.open('https://demoqa.com/automation-practice-form')
     add_data()
     # Проверка заполнения
     check_data()
+    browser.quit()
