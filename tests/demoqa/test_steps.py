@@ -2,6 +2,7 @@ import os
 from time import sleep
 
 from selene import browser, have
+from selene.support import webdriver
 from selene.support.conditions import be
 
 def choice_date():
@@ -46,6 +47,17 @@ def check_data():
     browser.element('#closeLargeModal').click()
 
 def test_enter_context():
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--disable-notifications')
+    options.add_argument('--disable-extensions')
+    options.add_argument('--disable-infobars')
+    options.add_argument('--enable-automation')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-setuid-sandbox')
+    browser.config.driver_options = options
     browser.open('https://demoqa.com/automation-practice-form')
     add_data()
     # Проверка заполнения
