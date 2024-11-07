@@ -58,7 +58,7 @@ def test_enter_context():
     options.add_argument('--enable-automation')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--disable-setuid-sandbox')
-    browser.config.driver_options = options
+    browser.Config.driver_options = options
     browser.open('https://demoqa.com/automation-practice-form')
     add_data()
     # Проверка заполнения
