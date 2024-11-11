@@ -7,8 +7,8 @@ from selenium import webdriver
 
 
 
-@pytest.fixture(scope='function', autouse=True)
-def open_browser(request):
+@pytest.fixture(scope='function')
+def setup_browser(request):
     # options = webdriver.ChromeOptions()
     # options.add_argument('--headless')
     # options.add_argument('--no-sandbox')
@@ -20,7 +20,6 @@ def open_browser(request):
     # options.add_argument('--disable-dev-shm-usage')
     # options.add_argument('--disable-setuid-sandbox')
     # browser.config.driver_options = options
-    from selenium import webdriver
     options = Options()
     selenoid_capabilities = {
         "browserName": "chrome",
