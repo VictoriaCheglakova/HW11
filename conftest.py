@@ -1,7 +1,7 @@
 import pytest
 from selene import browser, Browser, Config
 from selenium import webdriver
-from selenium.webdriver.chrome.options import import Options
+
 
 
 @pytest.fixture(scope='function')
