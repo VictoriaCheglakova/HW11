@@ -20,6 +20,6 @@ def test_add_content():
     driver = webdriver.Remote(
         command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
         options=options)
-    browser.config.driver = driver
+    # browser.config.driver = driver
     browser.open('https://demoqa.com/automation-practice-form')
     browser.quit()
