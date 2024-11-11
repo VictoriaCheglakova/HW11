@@ -4,7 +4,7 @@ from selenium import webdriver
 
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='function', autouse=True)
 def open_browser(request):
     # options = webdriver.ChromeOptions()
     # options.add_argument('--headless')
