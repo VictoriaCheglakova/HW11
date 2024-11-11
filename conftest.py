@@ -1,11 +1,14 @@
+from xml.dom.xmlbuilder import Options
+
 import pytest
+from requests import options
 from selene import browser, Browser, Config
 from selenium import webdriver
 
 
 
 @pytest.fixture(scope='function', autouse=True)
-def open_browser():
+def open_browser(request):
     # options = webdriver.ChromeOptions()
     # options.add_argument('--headless')
     # options.add_argument('--no-sandbox')
@@ -18,19 +21,22 @@ def open_browser():
     # options.add_argument('--disable-setuid-sandbox')
     # browser.config.driver_options = options
     from selenium import webdriver
-
-    capabilities = {
+    options = Options()
+    selenoid_capabilities = {
         "browserName": "chrome",
         "browserVersion": "100.0",
         "selenoid:options": {
             "enableVNC": True,
-            "enableVideo": False
+            "enableVideo": True
         }
     }
-
+    options.capabilities.update(selenoid_capabilities)
     driver = webdriver.Remote(
         command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
-        desired_capabilities=capabilities)
+        options=options
+    )
+        # desired_capabilities=selenoid_capabilities)
     # browser.open('https://demoqa.com/automation-practice-form')
-    yield
+    browser = Browser(Config(driver))
+    yield browser
     browser.quit()
