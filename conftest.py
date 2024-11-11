@@ -1,10 +1,8 @@
-from xml.dom.xmlbuilder import Options
-
 import pytest
 from requests import options
 from selene import browser, Browser, Config
 from selenium import webdriver
-
+from selenium.webdriver.chrome.options import Options
 
 
 @pytest.fixture(scope='function')
