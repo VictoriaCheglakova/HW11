@@ -23,7 +23,7 @@ def setup_browser(request):
     driver = webdriver.Remote(
         command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
         options=options)
-    browser.Config.driver = driver
+    browser.config.driver = driver
 
     yield browser
     browser.quit()
