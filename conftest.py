@@ -6,7 +6,7 @@ from selenium.webdriver.chrome.options import Options
 
 @pytest.fixture(scope="function", autouse=True)
 def setup_browser(request):
-    browser.config.base_url = "https://demoqa.com/automation-practice-form/"
+    # browser.config.base_url = "https://demoqa.com/automation-practice-form/"
     options = Options()
     capabilities = {
         "browserName": "chrome",
