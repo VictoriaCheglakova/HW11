@@ -1,39 +1,32 @@
 import pytest
-from requests import options
-from selene import browser, Browser, Config
+from selene import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 
 @pytest.fixture(scope='function', autouse=True)
 def setup_browser(request):
-    # options = webdriver.ChromeOptions()
-    # options.add_argument('--headless')
-    # options.add_argument('--no-sandbox')
-    # options.add_argument('--disable-gpu')
-    # options.add_argument('--disable-notifications')
-    # options.add_argument('--disable-extensions')
-    # options.add_argument('--disable-infobars')
-    # options.add_argument('--enable-automation')
-    # options.add_argument('--disable-dev-shm-usage')
-    # options.add_argument('--disable-setuid-sandbox')
-    # browser.config.driver_options = options
-    options = Options()
-    selenoid_capabilities = {
-        "browserName": "chrome",
-        "browserVersion": "100.0",
-        "selenoid:options": {
-            "enableVNC": True,
-            "enableVideo": True
+    @pytest.fixture(scope="function", autouse=True)
+    def setup_browser(request):
+        browser.config.base_url = "https://demoqa.com/automation-practice-form/"
+        options = Options()
+        capabilities = {
+            "browserName": "chrome",
+            "browserVersion": "100.0",
+            "selenoid:options": {
+                "enableVNC": True,
+                "enableVideo": True
+            }
         }
-    }
-    options.capabilities.update(selenoid_capabilities)
-    driver = webdriver.Remote(
-        command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
-        options=options
-    )
-        # desired_capabilities=selenoid_capabilities)
-    # browser.open('https://demoqa.com/automation-practice-form')
-    browser = Browser(Config(driver))
-    yield browser
+
+        options.capabilities.update(capabilities)
+        options.page_load_strategy = "eager"
+        options.add_argument("window-size=1920,1080")
+        driver = webdriver.Remote(
+            command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
+            options=options)
+
+        browser.config.driver = driver
+
+        yield browser
     browser.quit()
